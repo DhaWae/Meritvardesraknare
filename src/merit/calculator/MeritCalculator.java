@@ -16,15 +16,14 @@ public class MeritCalculator {
        
     }
     
-   double totalMerit = 0;
-   int totalCoursePoints = 0;
-   double extraMerit = 0;
-   double meritTimesPoints = 0;
+
    
    
    public double calculateMerit(ArrayList<Course> courses){
-       
-       
+       double totalMerit = 0;
+       int totalCoursePoints = 0;
+       double extraMerit = 0;
+       double meritTimesPoints = 0;
        
        for (int i=0; i<courses.size();i++){
            

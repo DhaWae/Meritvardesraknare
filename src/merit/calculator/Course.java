@@ -4,11 +4,13 @@
  */
 package merit.calculator;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jesper.rudegran
- */
-public class Course extends CalculatorGUI{
+ */ 
+public class Course implements Serializable{
     String course = "undefined";
     String grade = "unknown";
     double points = 0;
