@@ -267,10 +267,10 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    Boolean firstLogin = true;
-    Student student;
+    static Boolean firstLogin = true;
+    static Student student;
     
-    private void firstTimeLogin(){
+    private static void firstTimeLogin(){
         if (firstLogin == true){
             student = new Student();
             firstLogin = false;
@@ -279,7 +279,7 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
     
     double merit = 0;
     private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
-      firstTimeLogin();
+      
       String courseName = courseInputField.getText();
       int coursePoints = Integer.parseInt(pointsBox.getSelectedItem().toString());
       String courseGrade = gradeBox.getSelectedItem().toString();
@@ -362,10 +362,10 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
         FileInputStream fis = new FileInputStream("Courses.txt");
         ObjectInputStream ois = new ObjectInputStream(fis);
         
-        ArrayList<Course> courseList = new ArrayList<>();
+        //ArrayList<Course> courseList = new ArrayList<>();
         student.courses = (ArrayList<Course>) ois.readObject();
         
-        for(Course myCourse : courseList){
+        for(Course myCourse : student.courses){
             System.out.println(myCourse.getCourseInformation());
         }
         System.out.println("load complete updating gui..");
@@ -404,6 +404,7 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CalculatorGUI().setVisible(true);
+                firstTimeLogin();
             }
         });
     }
