@@ -35,23 +35,17 @@ public class Course implements Serializable{
         return grade;
     }
     
+    //gör om betyg till dess meritvärde
     public double getGradeMerit(){
-        switch(grade){
-            case "A":
-                return 20;
-            case "B":
-                return 17.5;
-            case "C":
-                return 15;
-            case "D":
-                return 12.5;
-            case "E":
-                return 10;
-            case "-":
-                return 0;
-            default:
-                return 0;
-        }
+        return switch (grade) {
+            case "A" -> 20;
+            case "B" -> 17.5;
+            case "C" -> 15;
+            case "D" -> 12.5;
+            case "E" -> 10;
+            case "-" -> 0;
+            default -> 0;
+        };
     }
     
     public double getExtraMerit (){

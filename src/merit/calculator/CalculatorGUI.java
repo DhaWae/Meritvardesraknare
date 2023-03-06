@@ -6,7 +6,6 @@ package merit.calculator;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,11 +25,8 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
      * Creates new form CalculatorGUI
      */
     public CalculatorGUI() {
-        initComponents();
-        
+        initComponents();   
     }
-    
-    MeritCalculator calculator = new MeritCalculator();
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,9 +55,10 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
         gradeBox = new javax.swing.JComboBox<>();
         extraMeritBox = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        saveBtn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        saveMenuBtn = new javax.swing.JMenuItem();
+        loadMenuBtn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,20 +141,6 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
             }
         });
 
-        saveBtn.setText("Save");
-        saveBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Load");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -165,13 +148,9 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(titleLabel)
-                        .addGap(152, 152, 152)
-                        .addComponent(saveBtn))
+                        .addGap(224, 224, 224))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,12 +189,8 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(titleLabel)
-                    .addComponent(saveBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addGap(7, 7, 7)
+                .addComponent(titleLabel)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -233,7 +208,7 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(extraMeritLabel)
                             .addComponent(extraMeritBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
@@ -247,8 +222,31 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
                             .addComponent(addCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(meritOutput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
+
+        jMenu1.setText("File");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        saveMenuBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        saveMenuBtn.setText("Save");
+        saveMenuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMenuBtnActionPerformed(evt);
+            }
+        });
+        jMenu1.add(saveMenuBtn);
+
+        loadMenuBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        loadMenuBtn.setText("Load");
+        loadMenuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadMenuBtnActionPerformed(evt);
+            }
+        });
+        jMenu1.add(loadMenuBtn);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -266,18 +264,12 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    static Boolean firstLogin = true;
-    static Student student;
+
+    public Student student;
+    String merit = "0";
     
-    private static void firstTimeLogin(){
-        if (firstLogin == true){
-            student = new Student();
-            firstLogin = false;
-        }
-    }
-    
-    double merit = 0;
     private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
       
       String courseName = courseInputField.getText();
@@ -285,39 +277,47 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
       String courseGrade = gradeBox.getSelectedItem().toString();
       double courseExtraMerit = Double.parseDouble(extraMeritBox.getSelectedItem().toString());
       
-      student.courses.add(new Course(courseName, coursePoints, courseGrade, courseExtraMerit));
-      
-      updateGUI();
-      
-   
-      
+      if("".equals(courseName) || "please enter a course name".equals(courseName)){
+          courseInputField.setText("please enter a course name");
+      }else{
+          student.courses.add(new Course(courseName, coursePoints, courseGrade, courseExtraMerit));
+          updateGUI();
+      }
     }//GEN-LAST:event_addCourseBtnActionPerformed
-    
+   
+    MeritCalculator calculator = new MeritCalculator();
     public void updateGUI(){
       String strCourses = "";
-      for (int i = 0; i<student.courses.size(); i++){
-      strCourses += student.getCourses().get(i).getCourseInformation() +'\n';
+      
+      for (Course course : student.courses) {
+          strCourses += course.getCourseInformation() + "\n";
       }
       
       textArea.setText("""
                        Course | Points | Grade | Extra merit
-                       _____________________________________
+                       _____________________________________________
                        
                        """+ strCourses);
       merit = calculator.calculateMerit(student.courses);
-      if(merit > 0){
-          meritOutput.setText(Double.toString(merit));
-      } else {
+      
+      if(String.valueOf(merit).equals("NaN")){
           meritOutput.setText("0");
-      }
-      
-      
+          
+      } else {
+          meritOutput.setText(merit);
+      } 
     }
     
     private void deleteCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCourseBtnActionPerformed
-        String deleteCourseIndex = JOptionPane.showInputDialog("Enter course index (only number(s))", "1-x");
-        student.courses.remove(Integer.parseInt(deleteCourseIndex)-1);
-        updateGUI();
+        String deleteCourseIndex = JOptionPane.showInputDialog("Enter course index (only number(s))", "1-n");
+        try{
+            student.courses.remove(Integer.parseInt(deleteCourseIndex)-1);
+            updateGUI();
+        } catch(IndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(rootPane,"Course number is out of bounds.");
+        } catch(NumberFormatException ex) {
+            JOptionPane.showMessageDialog(rootPane,"Please only enter numbers.");
+        }
     }//GEN-LAST:event_deleteCourseBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -325,17 +325,7 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
         updateGUI();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        
-        try {
-            writeObject();
-        } catch (IOException ex) {
-            Logger.getLogger(CalculatorGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_saveBtnActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void loadMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadMenuBtnActionPerformed
         try {
             loadObject();
         } catch (IOException ex) {
@@ -343,71 +333,38 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(CalculatorGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_loadMenuBtnActionPerformed
+
+    private void saveMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuBtnActionPerformed
+        try {
+            writeObject();
+        } catch (IOException ex) {
+            Logger.getLogger(CalculatorGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_saveMenuBtnActionPerformed
     
+    //skriver kurser till fil
     public void writeObject() throws IOException{
-          
-  
-        
-        FileOutputStream fos = new FileOutputStream("Courses.txt");
+        FileOutputStream fos = new FileOutputStream(student.encSSN + ".dat");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(student.courses);
         System.out.println("finished");
         oos.close();
         fos.close();
-        
     }
     
+    //laddar kurser från fil
     public void loadObject () throws FileNotFoundException, IOException, ClassNotFoundException{
-        FileInputStream fis = new FileInputStream("Courses.txt");
+        FileInputStream fis = new FileInputStream(student.encSSN +".dat");
         ObjectInputStream ois = new ObjectInputStream(fis);
         
-        //ArrayList<Course> courseList = new ArrayList<>();
         student.courses = (ArrayList<Course>) ois.readObject();
-        
-        for(Course myCourse : student.courses){
-            System.out.println(myCourse.getCourseInformation());
-        }
-        System.out.println("load complete updating gui..");
         updateGUI();
-        System.out.println("gui updated");
-          
     }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CalculatorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CalculatorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CalculatorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CalculatorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CalculatorGUI().setVisible(true);
-                firstTimeLogin();
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton addCourseBtn;
@@ -419,16 +376,17 @@ public class CalculatorGUI extends javax.swing.JFrame implements Serializable {
     public javax.swing.JComboBox<String> gradeBox;
     public javax.swing.JLabel gradeLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     public javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JSeparator jSeparator1;
+    public javax.swing.JMenuItem loadMenuBtn;
     public javax.swing.JTextField meritOutput;
     public javax.swing.JComboBox<String> pointsBox;
     public javax.swing.JLabel pointsLabel;
-    private javax.swing.JButton saveBtn;
+    public javax.swing.JMenuItem saveMenuBtn;
     public javax.swing.JTextArea textArea;
     public javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

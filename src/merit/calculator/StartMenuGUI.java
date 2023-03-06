@@ -4,6 +4,12 @@
  */
 package merit.calculator;
 
+import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author jesper.rudegran
@@ -15,6 +21,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
      */
     public StartMenuGUI() {
         initComponents();
+        this.setResizable(false);
     }
 
     /**
@@ -26,22 +33,171 @@ public class StartMenuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        sSNInput = new javax.swing.JTextField();
+        guestBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        loginBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setForeground(new java.awt.Color(51, 51, 51));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setText("Enter SSN to login or register");
+
+        sSNInput.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sSNInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sSNInputActionPerformed(evt);
+            }
+        });
+        sSNInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sSNInputKeyPressed(evt);
+            }
+        });
+
+        guestBtn.setBackground(new java.awt.Color(102, 102, 102));
+        guestBtn.setText("Continue as guest");
+        guestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guestBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setText("or continue as guest (you can't save or load courses as guest)");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setText("Merit Calculator");
+
+        loginBtn.setForeground(new java.awt.Color(0, 0, 0));
+        loginBtn.setText("Login");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
+                    .addComponent(sSNInput, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(guestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(149, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(sSNInput, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(guestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void guestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestBtnActionPerformed
+        loadCalculatorWithoutSSN();
+    }//GEN-LAST:event_guestBtnActionPerformed
+    
+    private void sSNInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sSNInputActionPerformed
+
+    }//GEN-LAST:event_sSNInputActionPerformed
+
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        try {
+            loadCalculatorWithSSN();
+        } catch (IOException ex) {
+            Logger.getLogger(StartMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StartMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_loginBtnActionPerformed
+    
+    //tittar om enter trycks och försöker då logga in
+    private void sSNInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sSNInputKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            try {
+                loadCalculatorWithSSN();
+            } catch (IOException ex) {
+                Logger.getLogger(StartMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(StartMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_sSNInputKeyPressed
+    
+    private void loadCalculatorWithSSN() throws IOException, ClassNotFoundException{
+        if(sSNInput.getText().length() < 12 || sSNInput.getText().length() > 12){
+            sSNInput.setText("SSN should be 12 numbers");
+        } else {
+           CalculatorGUI calculator = new CalculatorGUI();
+           setVisible(false);
+           calculator.setVisible(true);
+           calculator.setResizable(false);
+           calculator.student = new Student(sSNInput.getText());
+           calculator.student.encodeSSN();
+           
+           //försöker ladda filen med kurser, om ingen finns skapar den en ny.
+           try{
+               calculator.loadObject();
+           } catch(FileNotFoundException ex){
+               System.out.println("New user no file exists, creating file");
+               calculator.writeObject();
+               calculator.loadObject();
+           } 
+           
+        }
+    }
+    
+    private void loadCalculatorWithoutSSN(){
+        CalculatorGUI calculator = new CalculatorGUI();
+        setVisible(false);
+        calculator.setVisible(true);
+        calculator.saveMenuBtn.setEnabled(false);
+        calculator.loadMenuBtn.setEnabled(false);
+        calculator.setResizable(false);
+        calculator.student = new Student();
+    }
     /**
      * @param args the command line arguments
      */
@@ -78,5 +234,12 @@ public class StartMenuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton guestBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JTextField sSNInput;
     // End of variables declaration//GEN-END:variables
 }
